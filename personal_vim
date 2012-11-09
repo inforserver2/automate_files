@@ -1,0 +1,33 @@
+if grep "Mine sets" ~/.vimrc -q
+then
+    echo already!
+else
+cat >> ~/.vimrc <<-EOF
+
+    "Mine sets
+
+    set termencoding=iso-8859-1
+    set encoding=UTF-8
+    set fileencodings=UTF-8
+
+    nnoremap <F12> :call ToggleMouse()<CR>
+    function! ToggleMouse()
+      if &mouse == 'a'
+          set mouse=
+          echo "Mouse usage disabled"
+      else
+          set mouse=a
+          echo "Mouse usage enabled"
+      endif
+    endfunction
+
+    set pastetoggle=<F2>
+
+    "set nobackup
+    "set noswapfile
+
+    let g:user_zen_expandabbr_key = '<c-e>'
+    let g:use_zen_complete_tag = 1
+
+EOF
+fi

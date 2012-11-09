@@ -1,0 +1,22 @@
+string="GIT_PS1_SHOWDIRTYSTATE=true"
+file=~/.bashrc
+if grep "$string" $file -q 
+then
+echo already!
+else
+	cd
+	wget https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
+	mv ~/git-completion.bash ~/.git-completion.bash
+	echo source ~/.git-completion.bash >> ~/.bashrc
+	wget https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
+	mv  ~/git-prompt.sh  ~/.git-prompt.sh
+	echo source ~/.git-prompt.sh >> ~/.bashrc 
+	
+	echo "GIT_PS1_SHOWDIRTYSTATE=true" >> ~/.bashrc 
+	
+	cat >> ~/.bashrc <<-EOF
+	PS1='\u@\h:\w \$(__git_ps1 "(%s)")\$ '
+	EOF
+	
+	ssh-keygen -t rsa -C "seu_email@provedor.com"
+fi

@@ -1,0 +1,6 @@
+  cd ~/.vim
+  git submodule add git://git.wincent.com/command-t.git bundle/command-t
+  git submodule init
+  cd ~/.vim/bundle/command-t/ruby/command-t
+  ruby extconf.rb
+  make

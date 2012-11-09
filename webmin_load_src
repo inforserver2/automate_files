@@ -1,0 +1,14 @@
+#!/bin/bash
+str1="deb http://download.webmin.com/download/repository sarge contrib"
+file1="/etc/apt/sources.list"
+
+if grep -Fxq "$str1" "$file1" 
+then
+#none
+echo already in!
+else
+	cat >> /etc/apt/sources.list <<-EOF
+	deb http://download.webmin.com/download/repository sarge contrib
+	deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
+	EOF
+fi

@@ -1,0 +1,9 @@
+cd ~/pack
+if [ ! -d "vim73" ]; then
+	wget ftp://ftp.vim.org/pub/vim/unix/vim-7.3.tar.bz2
+	tar -jxvf vim-7.3.tar.bz2
+	cd vim73
+	./configure --enable-cscope --with-features=huge -enable-gui=gnome2 --enable-rubyinterp && make && make install
+else
+	echo already installed
+fi
