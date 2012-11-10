@@ -1,0 +1,41 @@
+# create base
+mkdir -p /etc/apache2/logs
+
+# build a virtualdomain
+DOMAIN=$2
+HOST=$1
+file="/var/web/$DOMAIN"
+
+if [ -d $file ]
+then
+    echo already
+    exit 0
+fi
+
+mkdir -p /var/web
+mkdir -p /var/web/$DOMAIN
+cd /var/web/$DOMAIN
+echo "$DOMAIN content" > index.html
+
+# add to sites-available
+cat >> /etc/apache2/sites-available/$DOMAIN <<-EOF
+   <VirtualHost *:80>
+      ServerName $HOST.$DOMAIN
+      # !!! Be sure to point DocumentRoot to 'public'!
+      DocumentRoot /var/web/$DOMAIN
+      <Directory /var/web/$DOMAIN>
+         # This relaxes Apache security settings.
+         AllowOverride all
+         # MultiViews must be turned off.
+         Options -MultiViews
+      </Directory>
+   </VirtualHost>
+EOF
+
+# make sure to load virtual with the following command
+a2ensite $DOMAIN
+# to remove
+# a2dissite $DOMAIN
+
+service apache2 reload
+

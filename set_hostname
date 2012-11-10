@@ -1,0 +1,9 @@
+host=$1
+domain=$2
+
+echo $host > /etc/hostname
+sed -i '1d' /etc/hosts
+sed -i "1i\127.0.0.1 $host.$domain $host localhost localhost.localdomain" /etc/hosts
+hostname $host.$domain
+
+

@@ -1,0 +1,11 @@
+var=`gem list | grep passenger | awk '{print $2}' | cut -d ")" -f 1 | cut -d "(" -f 2`
+if grep "passenger" /etc/apache2/httpd.conf -q
+then
+    echo already
+else
+cat >> /etc/apache2/httpd.conf <<-EOF
+       LoadModule passenger_module /usr/lib/ruby/gems/1.9.1/gems/passenger-$var/ext/apache2/mod_passenger.so
+       PassengerRoot /usr/lib/ruby/gems/1.9.1/gems/passenger-$var
+       PassengerRuby /usr/bin/ruby1.9.1
+EOF
+fi
