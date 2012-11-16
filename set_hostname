@@ -1,9 +1,26 @@
+#!/bin/bash
+if [ $# -ne 2 ]; then
+    echo "Usage: `basename $0` {host domain}"
+    exit 1
+elif [[ ! "$2" =~ [a-zA-Z0-9]\.[a-zA-Z0-9] ]]; then
+    echo "Domain not correct specified"
+    exit 1
+fi
+
 host=$1
 domain=$2
+fqdn=$1.$2
 
-echo $host > /etc/hostname
-sed -i '1d' /etc/hosts
-sed -i "1i\127.0.0.1 $host.$domain $host localhost localhost.localdomain" /etc/hosts
-hostname $host.$domain
+    echo $host > /etc/hostname
+    if [ -s /etc/hosts ]
+    then
+        echo "127.0.0.1 $fqdn $domain $host localhost localhost.localdomain" > /etc/hosts
+    else
+        sed -i -E '/127.0.0.?*localhost*/d' /etc/hosts
+        sed -i "1i\127.0.0.1 $fqdn $domain $host localhost localhost.localdomain" /etc/hosts
+    fi
+
+    hostname $host.$domain
+
 
 

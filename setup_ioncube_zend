@@ -1,0 +1,70 @@
+#!/bin/bash
+if [ "$1" != "i386" -a "$1" != "amd64" ]; then
+    echo $0 \(i386/amd64\)
+    exit 1
+fi
+
+echo Ioncube Check
+if [ ! -f /usr/local/lib/ioncube/ioncube_loader_lin_5.3.so ]; then
+
+    cd ~/pack
+    # ioncube
+    # config at http://www.v-nessa.net/2007/11/18/installing-ioncube-loader-with-zend-optimizer
+    echo Installing...
+    if [ "$1" == "i386" ]; then
+        wget http://downloads2.ioncube.com/loader_downloads/ioncube_loaders_lin_x86.tar.gz
+        tar -zxvf ioncube_loaders_lin_x86.tar.gz
+    elif [ "$1" == "amd64" ]; then
+        wget http://downloads2.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
+        tar -zxvf ioncube_loaders_lin_x86-64.tar.gz
+    fi
+
+    cd ioncube
+    mkdir -p /usr/local/lib/ioncube
+    cp -rf ioncube_loader_lin_5.3.so /usr/local/lib/ioncube
+    cd ~/pack; rm -rf ioncube
+    echo done.
+
+fi
+
+echo Zend Check
+if [ ! -f /usr/local/lib/Zend/ZendGuardLoader.so ]; then
+
+    echo Installing...
+    cd ~/pack/automate_files/files
+    # Zend Guard
+    # config at http://kb.zend.com/index.php?View=entry&EntryID=424
+
+    #lynx http://www.zend.com/en/download/418 # 64bits
+    #lynx http://www.zend.com/en/download/419 # 32bits
+
+    if [ "$1" == "i386" ]; then
+        tar -zxvf ZendGuardLoader-php-5.3-linux-glibc23-i386.tar.gz
+        cd ZendGuardLoader-php-5.3-linux-glibc23-i386/php-5.3.x
+    elif [ "$1" == "amd64" ]; then
+        tar -zxvf ZendGuardLoader-php-5.3-linux-glibc23-x86_64.tar.gz
+        cd ZendGuardLoader-php-5.3-linux-glibc23-x86_64/php-5.3.x
+    fi
+
+    mkdir -p /usr/local/lib/Zend
+    cp -rf ZendGuardLoader.so /usr/local/lib/Zend
+
+    cd ~/pack/automate_files/files
+    rm -rf ZendGuardLoader-php-5.3-linux-glibc23-x86_64 ZendGuardLoader-php-5.3-linux-glibc23-i386
+    echo done.
+
+fi
+
+if ! grep "zend_extension" /etc/php5/apache2/php.ini -q ; then
+    echo Pushing ioncube zend load instrutions to php.ini...
+cat >> /etc/php5/apache2/php.ini <<-EOF
+[Zend]
+zend_extension=/usr/local/lib/ioncube/ioncube_loader_lin_5.3.so
+zend_extension=/usr/local/lib/Zend/ZendGuardLoader.so
+EOF
+    echo "<?php echo phpinfo(); ?>" > /var/www/phpinfo.php
+    echo done.
+fi
+
+service apache2 restart
+

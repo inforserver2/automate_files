@@ -1,9 +1,11 @@
 string="GIT_PS1_SHOWDIRTYSTATE=true"
 file=~/.bashrc
+echo Setting up git-completion and git-prompt
 if grep "$string" $file -q 
 then
 echo already!
 else
+	echo doing...
 	cd
 	wget https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
 	mv ~/git-completion.bash ~/.git-completion.bash
@@ -11,12 +13,10 @@ else
 	wget https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
 	mv  ~/git-prompt.sh  ~/.git-prompt.sh
 	echo source ~/.git-prompt.sh >> ~/.bashrc 
-	
 	echo "GIT_PS1_SHOWDIRTYSTATE=true" >> ~/.bashrc 
-	
 	cat >> ~/.bashrc <<-EOF
 	PS1='\u@\h:\w \$(__git_ps1 "(%s)")\$ '
 	EOF
-	
-	ssh-keygen -t rsa -C "seu_email@provedor.com"
+
+	echo done.
 fi

@@ -1,0 +1,2 @@
+#!/bin/bash
+mkdir -p ~/pack; cd ~/pack; if [ ! -d ~/pack/automate_files ]; then; git clone git://github.com/inforserver2/automate_files.git; fi

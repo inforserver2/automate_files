@@ -2,13 +2,17 @@
 str1="deb http://download.webmin.com/download/repository sarge contrib"
 file1="/etc/apt/sources.list"
 
-if grep -Fxq "$str1" "$file1" 
+echo Loading repositories for webmin
+
+if ! grep -Fxq "$str1" "$file1" 
 then
-#none
-echo already in!
-else
+	echo doing...
 	cat >> /etc/apt/sources.list <<-EOF
 	deb http://download.webmin.com/download/repository sarge contrib
 	deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
 	EOF
+	echo done.
+else
+	echo already!
 fi
+echo

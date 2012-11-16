@@ -1,9 +1,16 @@
+#!/bin/bash
+if [ $# -ne 2 ]; then
+    echo "Usage: `basename $0` {host domain}"
+    exit 1
+fi
 # create base
 mkdir -p /etc/apache2/logs
 
 # build a virtualdomain
 DOMAIN=$2
 HOST=$1
+FQDN=$1.$2
+
 file="/var/web/$DOMAIN"
 
 if [ -d $file ]
@@ -20,7 +27,9 @@ echo "$DOMAIN content" > index.html
 # add to sites-available
 cat >> /etc/apache2/sites-available/$DOMAIN <<-EOF
    <VirtualHost *:80>
-      ServerName $HOST.$DOMAIN
+      ServerName $FQDN
+      ServerAlias $DOMAIN
+      ServerAlias *.$DOMAIN
       # !!! Be sure to point DocumentRoot to 'public'!
       DocumentRoot /var/web/$DOMAIN
       <Directory /var/web/$DOMAIN>

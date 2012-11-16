@@ -1,11 +1,19 @@
+#!/bin/bash
+echo Getting the version of passenger...
 var=`gem list | grep passenger | awk '{print $2}' | cut -d ")" -f 1 | cut -d "(" -f 2`
+echo $var
 if grep "passenger" /etc/apache2/httpd.conf -q
 then
-    echo already
+    echo LoadModule for passenger already in place
 else
+    echo Compiling passenger
+    passenger-install-apache2-module -a
+    echo Pushing LoadModule to httpd.conf...
 cat >> /etc/apache2/httpd.conf <<-EOF
        LoadModule passenger_module /usr/lib/ruby/gems/1.9.1/gems/passenger-$var/ext/apache2/mod_passenger.so
        PassengerRoot /usr/lib/ruby/gems/1.9.1/gems/passenger-$var
        PassengerRuby /usr/bin/ruby1.9.1
 EOF
+    echo done.
 fi
+
