@@ -1,0 +1,64 @@
+sp=/etc/default/spamassassin
+am=/etc/amavis/amavisd.conf
+cfm=/etc/amavis/conf.d/15-content_filter_mode
+ma=/etc/postfix/master.cf
+mc=/etc/postfix/main.cf
+
+DOMAIN=`hostname -d`
+HOSTNAME=mail.$DOMAIN
+
+sed -i 's[^ENABLED=0$[ENABLED=1[' $sp #8
+
+if [ ! -f /etc/amavis/amavisd.conf ]; then
+cp /usr/share/doc/amavisd-new/examples/amavisd.conf-sample.gz /etc/amavis/
+gunzip /etc/amavis/amavisd.conf-sample.gz
+mv /etc/amavis/amavisd.conf-sample /etc/amavis/amavisd.conf
+fi
+
+sed -i "s[^#\$MYHOME = '/var/lib/amavis'[\$MYHOME = '/var/lib/amavis'[" $am #66
+sed -i "s[^\$mydomain = 'example.com'[\$mydomain = '$DOMAIN'[" $am #71
+sed -i "s[^# \$myhostname = 'host.example.com'[ \$myhostname = '$HOSTNAME'[" $am #73
+sed -i "s[^\$daemon_user  = 'vscan'[\$daemon_user  = 'amavis'[" $am #77
+sed -i "s[^\$daemon_group = 'vscan'[\$daemon_group = 'amavis'[" $am #78
+sed -i "s[^\$virus_admin = [#\$virus_admin = [" $am #626
+sed -i "1935,1937s[^#[[" $am #1935-1937
+sed -i 's[/clamd"],$[/clamd.ctl"],[' $am # 1935
+sed -i "13,14s[^#[[" $cfm #13-14
+sed -i "24,25s[^#[[" $cfm #24-25
+
+if ! grep 'content_filter=smtp-amavis' $mc -q ; then
+    echo '' >> $mc
+    echo 'content_filter=smtp-amavis:[127.0.0.1]:10024' >> $mc
+fi
+
+if ! grep "smtp-amavis" $ma -q ; then
+cat >> $ma <<-EOF
+smtp-amavis unix -       -       n      -     2 smtp
+      -o smtp_data_done_timeout=1200
+      -o smtp_send_xforward_command=yes
+      -o disable_dns_lookups=yes
+127.0.0.1:10025 inet n     -     n     -     - smtpd
+      -o content_filter=
+      -o local_recipient_maps=
+      -o relay_recipient_maps=
+      -o smtpd_restriction_classes=
+      -o smtpd_client_restrictions=
+      -o smtpd_helo_restrictions=
+      -o smtpd_sender_restrictions=
+      -o smtpd_recipient_restrictions=permit_mynetworks,reject
+      -o mynetworks=127.0.0.0/8
+      -o strict_rfc821_envelopes=yes
+      -o smtpd_error_sleep_time=0
+      -o smtpd_soft_error_limit=1001
+      -o smtpd_hard_error_limit=1000
+
+EOF
+fi
+
+touch /etc/mailname
+chmod -R 775 /var/lib/amavis/tmp
+usermod -G amavis clamav
+/etc/init.d/clamav-daemon restart
+/etc/init.d/spamassassin restart
+/etc/init.d/amavis restart
+
