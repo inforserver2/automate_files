@@ -1,0 +1,21 @@
+dc=/etc/postfix/main.cf
+mc=/etc/postfix/master.cf
+ssl=/etc/dovecot/conf.d/10-ssl.conf
+
+if ! grep "smtpd_use_tls = yes" $dc -q ; then
+
+cat >> $dc <<-EOF
+
+smtpd_use_tls = yes
+smtpd_tls_cert_file = /etc/ssl/certs/ssl-cert-snakeoil.pem
+smtpd_tls_key_file = /etc/ssl/private/ssl-cert-snakeoil.key
+smtpd_tls_session_cache_database = btree:\${data_directory}/smtpd_scache
+
+EOF
+fi
+
+sed -i '22,24s/^#//' $mc #22-24
+sed -i 's[^#ssl = yes$[ssl = yes[' $ssl #6
+sed -i 's[^ssl_cert = </etc/ssl/certs/dovecot.pem$[ssl_cert = </etc/ssl/certs/ssl-cert-snakeoil.pem[' $ssl #12
+sed -i 's[^ssl_key = </etc/ssl/private/dovecot.pem$[ssl_key = </etc/ssl/private/ssl-cert-snakeoil.key[' $ssl #13
+service dovecot restart

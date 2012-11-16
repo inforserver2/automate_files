@@ -1,0 +1,60 @@
+#!/bin/bash
+domain=`hostname -d`
+server=mail.$domain
+
+if [ ! -f /etc/postfix/main.cf  ]; then
+cp /usr/lib/postfix/main.cf /etc/postfix/main.cf
+fi
+
+pc=/etc/postfix/main.cf
+
+sed -i 's[^#mail_owner = postfix$[mail_owner = postfix[' $pc #59
+sed -i 's[^#myhostname = virtual.domain.tld$[myhostname = '$server'[' $pc #76
+sed -i 's[^#mydomain = domain.tld$[mydomain = '$domain'[' $pc #83
+sed -i 's[^#myorigin = \$mydomain$[myorigin = \$mydomain[' $pc #104
+sed -i 's[^#inet_interfaces = all$[inet_interfaces = all[' $pc #118
+sed -i 's[^#mydestination = \$myhostname, localhost.\$mydomain, localhost, \$mydomain$[mydestination = \$myhostname, localhost.\$mydomain, localhost, \$mydomain[' $pc #166
+sed -i 's[^#local_recipient_maps = unix:passwd.byname \$alias_maps$[local_recipient_maps = unix:passwd.byname \$alias_maps[' $pc #209
+#268 ignored
+sed -i 's[^#alias_maps = hash:/etc/aliases$[alias_maps = hash:/etc/aliases[' $pc #388
+sed -i 's[^#alias_database = hash:/etc/aliases$[alias_database = hash:/etc/aliases[' $pc #399
+sed -i 's[^#home_mailbox = Maildir/$[home_mailbox = Maildir/[' $pc #421
+#531 ignored
+sed -i 's[^smtpd_banner = \$myhostname ESMTP \$mail_name (@@DISTRO@@)$[smtpd_banner = \$myhostname ESMTP[' $pc #557
+sed -i 's[^sendmail_path =$[sendmail_path = /usr/sbin/postfix[' $pc #631
+sed -i 's[^newaliases_path =$[newaliases_path = /usr/bin/newaliases[' $pc #636
+sed -i 's[^mailq_path =$[mailq_path = /usr/bin/mailq[' $pc #641
+sed -i 's[^setgid_group =$[setgid_group = postdrop[' $pc #647
+sed -i 's[^html_directory =$[#html_directory =[' $pc #651
+sed -i 's[^manpage_directory =$[#manpage_directory =[' $pc #655
+sed -i 's[^sample_directory =$[#sample_directory =[' $pc #660
+sed -i 's[^readme_directory =$[#readme_directory =[' $pc #664
+
+if ! grep "message_size_limit = 10485760" $pc -q ; then
+cat >> $pc <<-EOF
+# Add at the lasdt line: limit an email size 10M
+message_size_limit = 10485760
+# limit mailbox 1G
+mailbox_size_limit = 1073741824
+# for SMTP-Auth settings
+smtpd_sasl_type = dovecot
+smtpd_sasl_path = private/auth
+smtpd_sasl_auth_enable = yes
+smtpd_sasl_security_options = noanonymous
+smtpd_sasl_local_domain = $myhostname
+smtpd_client_restrictions = permit_mynetworks,reject_unknown_client,permit
+smtpd_recipient_restrictions = permit_mynetworks,permit_auth_destination,permit_sasl_authenticated,reject
+# Filters
+header_checks = regexp:/etc/postfix/header_checks
+body_checks = regexp:/etc/postfix/body_checks
+EOF
+fi
+
+sed -i 's[^smtpd_client_restrictions = permit_mynetworks,reject_unknown_client,permit$[smtpd_client_restrictions = permit_mynetworks,permit[' $pc
+
+touch /etc/postfix/header_checks
+touch /etc/postfix/body_checks
+newaliases
+service postfix restart
+
+#sed -i 's[[[' $pc #

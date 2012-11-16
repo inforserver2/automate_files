@@ -1,0 +1,14 @@
+dc=/etc/postfix/main.cf
+
+if ! grep "virtual_alias_maps = " $dc -q ; then
+
+cat >> $dc <<-EOF
+virtual_alias_domains = $virtuais
+virtual_alias_maps = hash:/etc/postfix/virtual
+EOF
+
+fi
+
+touch /etc/postfix/virtual
+postmap /etc/postfix/virtual
+service postfix reload
