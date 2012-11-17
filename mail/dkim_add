@@ -1,0 +1,37 @@
+#!/bin/bash
+if [ $# -ne 1 ]; then
+    echo "Usage: `basename $0` domain"
+    exit 1
+fi
+
+DOMAINADD=$1
+
+if [ ! -d /etc/opendkim/keys/$DOMAINADD ]; then
+
+mkdir -p /etc/opendkim/keys/$DOMAINADD
+cd /etc/opendkim/keys/$DOMAINADD
+opendkim-genkey -r -d $DOMAINADD
+chown opendkim:opendkim default.private
+
+cat >> /etc/opendkim/KeyTable <<-EOF
+default._domainkey.$DOMAINADD $DOMAINADD:default:/etc/opendkim/keys/$DOMAINADD/default.private
+EOF
+
+cat >> /etc/opendkim/SigningTable <<-EOF
+$DOMAINADD default._domainkey.$DOMAINADD
+EOF
+
+echo "# Copy of DKIM TXT Record"
+cat /etc/opendkim/keys/$DOMAINADD/default.txt
+
+echo "# Copy of SPF TXT Record"
+echo "# dont forget to change the ip 0.0.0.0"
+echo $DOMAINADD.           3600    IN      TXT     \"v=spf1 ip4:0.0.0.0 -all\"
+
+service opendkim restart
+service postfix restart
+
+else
+    echo already.
+fi
+

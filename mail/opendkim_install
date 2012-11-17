@@ -1,0 +1,64 @@
+#!/bin/bash
+# Install and setup OpenDkim for Multiple Domains
+# http://blog.tjitjing.com/index.php/2012/03/guide-to-install-opendkim-for-multiple-domains-with-postfix-and-debian.html
+
+sudo apt-get -y install opendkim
+
+if [ ! -d ~/pack/opendkim-2.6.7 ]; then
+    # then Install of OpenDkim tarball
+    cd ~/pack
+    wget http://sourceforge.net/projects/opendkim/files/opendkim-2.6.7.tar.gz
+    tar -zxvf opendkim-2.6.7.tar.gz
+    cd opendkim-2.6.7/
+    ./configure --disable-filter && make && make install && ldconfig
+fi
+
+if ! grep "^KeyTable           /etc/opendkim/KeyTable$" /etc/opendkim.conf -q ; then
+cat >> /etc/opendkim.conf <<-EOF
+
+KeyTable           /etc/opendkim/KeyTable
+SigningTable       /etc/opendkim/SigningTable
+ExternalIgnoreList /etc/opendkim/TrustedHosts
+InternalHosts      /etc/opendkim/TrustedHosts
+
+LogWhy yes
+
+EOF
+fi
+
+mkdir -p /etc/opendkim
+
+if ! grep "127.0.0.1" /etc/opendkim/TrustedHosts -q ; then
+cat >> /etc/opendkim/TrustedHosts <<-EOF
+127.0.0.1
+localhost
+# ...
+EOF
+fi
+
+if ! grep "^SOCKET=\"inet:12345@localhost\"" /etc/default/opendkim -q ; then
+cat >> /etc/default/opendkim <<-EOF
+
+SOCKET="inet:12345@localhost" # listen on loopback on port 12345
+
+EOF
+fi
+
+if ! grep "milter_default_action = accept" /etc/postfix/main.cf -q ; then
+# Postfix OpenDKIM Module
+cat >> /etc/postfix/main.cf <<-EOF
+
+milter_default_action = accept
+milter_protocol = 6
+smtpd_milters = inet:localhost:12345
+non_smtpd_milters = inet:localhost:12345
+
+EOF
+fi
+
+touch /etc/opendkim/KeyTable
+touch /etc/opendkim/SigningTable
+
+service opendkim restart
+service postfix restart
+

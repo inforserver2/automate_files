@@ -1,3 +1,4 @@
+#!/bin/bash
 sp=/etc/default/spamassassin
 am=/etc/amavis/amavisd.conf
 cfm=/etc/amavis/conf.d/15-content_filter_mode
