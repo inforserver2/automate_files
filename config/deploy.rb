@@ -158,7 +158,7 @@ task :php_modules do
     # cp -rf phpPgAdmin-5.0.4 /var/www/tools/phpPgAdmin
     # OR
   run "sudo apt-get -y install phppgadmin"
-  #  run "sed -i 's/^local   all             all                                     peer$/local   all             all                                     trust/' /etc/postgresql/9.1/main/pg_hba.conf"
+  run "sed -i 's/^local   all             all                                     peer$/local   all             all                                     trust/' /etc/postgresql/9.1/main/pg_hba.conf"
   run 'sed -i "s#_security[\']] = true#_security\'] = false#g" /etc/phppgadmin/config.inc.php'
   run "sed -i 's/^# allow from all/ allow from all/' /etc/phppgadmin/apache.conf"
   #  run "sudo -u postgres  psql -d postgres -U postgres -c \"ALTER USER postgres WITH PASSWORD '{senha}';\" "
