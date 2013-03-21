@@ -1,7 +1,33 @@
-server "0.0.0.0", :web, :app, :db, primary: true
+# set fixed ip on remote linux station
+# set password for root with "sudo passwd root" command
+#
+# make sure your linux is with capistrano, ruby and git installed
+# git clone automate_files
+# enter automate_files folder
+#
+# user the command "capify ." to start use capistrano
+# update config/deploy.rb with your needs
+# use it with cap command
+# verify the port, domains, hosts if all is ok
+
+#-----------------------------------------------------------------------
+#
+# After Settings:
+#
+# > setup dns server via webmin and sets local to use it - 30m
+# > setup and test apache main domain... questions about log files - 30m
+# > setup and test 2 email users on the main domain - annotate the commands to update aliases...
+# > add virtual domain to start an fresh app
+#
+#-----------------------------------------------------------------------
+
+
+
+
+server "192.168.1.5", :web, :app, :db, primary: true
 
 set :plat, "i386" # [i386,amd64]
-
+set :port, 2222
 set :user, "root"
 set :application, "blog"
 set :deploy_to, "/root/pack"
@@ -94,7 +120,7 @@ task :rails do
   run "( ! gem list | grep rubygems-update ) && (gem install rubygems-update && update_rubygems) || echo already installed!"
 
   # install ruby on rails and utilities
-  run "( ! gem list | grep rails ) && gem install rails || echo already installed!"
+  run "( ! gem list | grep rails ) && gem install rails -f || echo already installed!"
   run "( ! gem list | grep whenever ) && gem install whenever || echo already installed!"
   run "( ! gem list | grep annotate ) && gem install annotate || echo already installed!"
   run "( ! gem list | grep astrails-safe ) && gem install astrails-safe || echo already installed!"
@@ -132,10 +158,11 @@ task :php_modules do
     # cp -rf phpPgAdmin-5.0.4 /var/www/tools/phpPgAdmin
     # OR
   run "sudo apt-get -y install phppgadmin"
-
+  #  run "sed -i 's/^local   all             all                                     peer$/local   all             all                                     trust/' /etc/postgresql/9.1/main/pg_hba.conf"
   run 'sed -i "s#_security[\']] = true#_security\'] = false#g" /etc/phppgadmin/config.inc.php'
   run "sed -i 's/^# allow from all/ allow from all/' /etc/phppgadmin/apache.conf"
-  run "sudo -u postgres  psql -d postgres -U postgres -c \"ALTER USER postgres WITH PASSWORD '{senha}';\" "
+  #  run "sudo -u postgres  psql -d postgres -U postgres -c \"ALTER USER postgres WITH PASSWORD '{senha}';\" "
+  run "#{folder}/automate_files/set_mod_rewrite_on"
   run "service apache2 restart"
 
 end
@@ -152,7 +179,7 @@ task :js do
 
   # cofee-script
   run "sudo apt-get -y install npm"
-  run "npm install -g http://github.com/jashkenas/coffee-script/tarball/master"
+  run "npm install -g coffee-script"
 end
 
 task :cfg do
