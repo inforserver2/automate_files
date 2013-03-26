@@ -1,0 +1,10 @@
+@mylinuxserver2.info hribeiro
+@hthew.com   hribeiro
+princehrb@sbmmn.com hribeiro
+@bbom.prelance.info hribeiro
+@prelance.info hribeiro
+
+
+# postmap virtual_file
+# service postfix restart
+# service dovecot restart

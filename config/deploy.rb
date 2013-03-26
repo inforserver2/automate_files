@@ -19,15 +19,33 @@
 # > setup and test 2 email users on the main domain - annotate the commands to update aliases...
 # > add virtual domain to start an fresh app
 #
+# ----------------------------------------------------------------------------------------------
+# Desktop adds
+#
+#teamview   30m
+#hamachi    30m
+#
+#dropbox    30m
+#flvplayer  30m
+#
+#skype      30m
+#smb-w7/xp  30m
+#
+#gtalk      30m
+#filezilla   30m
+#
+#mirc       30m
+#forwardhq  30m
+#
 #-----------------------------------------------------------------------
 
 
 
 
-server "192.168.1.5", :web, :app, :db, primary: true
+server "192.168.1.51", :web, :app, :db, primary: true
 
 set :plat, "i386" # [i386,amd64]
-set :port, 2222
+set :port, 22
 set :user, "root"
 set :application, "blog"
 set :deploy_to, "/root/pack"
@@ -225,6 +243,6 @@ task :prepare do
   rails
   php_modules
   js
-  mail
   cfg
+  mail
 end
