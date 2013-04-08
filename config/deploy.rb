@@ -16,30 +16,45 @@
 #
 # > setup dns server via webmin and sets local to use it - 30m
 # > setup and test apache main domain... questions about log files - 30m
-# > setup and test 2 email users on the main domain - annotate the commands to update aliases...
-# > add virtual domain to start an fresh app
+# > setup and test 2 email users on the main domain - update config files - check templates - 30m
+# > add virtual domain to start an fresh app - 30m
 #
 # ----------------------------------------------------------------------------------------------
 # Desktop adds
 #
 #teamview   30m
-#hamachi    30m
+# wget http://www.teamviewer.com/download/version_8x/teamviewer_linux.deb
+# sudo dpkg -i teamviewer* && sudo apt-get install -f
 #
-#dropbox    30m
-#flvplayer  30m
+#adobe-flashplugin  30m
+# via Ubuntu Software Center
+# http://ubuntuguide.net/install-adobe-flash-plugin-in-ubuntu-12-04both-3264-bit
 #
 #skype      30m
+# sudo apt-add-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
+# sudo apt-get update && sudo apt-get install skype
+#
 #smb-w7/xp  30m
+# sudo apt-get install system-config-samba
+# sudo smbpasswd -a <username>
+# http://www.liberiangeek.net/2012/05/windows-7-vs-ubuntu-12-04-how-to-enable-advanced-file-sharing/
 #
 #gtalk      30m
+#use empathy
+#http://www.ubuntututorials.com/install-google-talk-ubuntu-12-04/
+#
 #filezilla   30m
+#sudo apt-get -y install filezilla filezilla-common
 #
 #mirc       30m
+#sudo apt-get install xchat
+#http://wiki.ubuntu-br.org/IRC/ComoUsar
+#
 #forwardhq  30m
+#gem install forward
+#foward [port]
 #
 #-----------------------------------------------------------------------
-
-
 
 
 server "192.168.1.51", :web, :app, :db, primary: true
