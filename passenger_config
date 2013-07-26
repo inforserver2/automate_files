@@ -10,7 +10,7 @@ else
     passenger-install-apache2-module -a
     echo Pushing LoadModule to httpd.conf...
 cat >> /etc/apache2/httpd.conf <<-EOF
-       LoadModule passenger_module /usr/lib/ruby/gems/1.9.1/gems/passenger-$var/ext/apache2/mod_passenger.so
+       LoadModule passenger_module /usr/lib/ruby/gems/1.9.1/gems/passenger-$var/buildout/apache2/mod_passenger.so
        PassengerRoot /usr/lib/ruby/gems/1.9.1/gems/passenger-$var
        PassengerRuby /usr/bin/ruby1.9.1
 EOF
