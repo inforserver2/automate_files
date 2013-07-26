@@ -172,6 +172,7 @@ task :rails do
   # setup passenger
   run "( ! gem list | grep passenger ) && gem install passenger || echo passenger already installed!"
   run "#{folder}/automate_files/passenger_config"
+  run "#{folder}/automate_files/rvm_install"
 end
 
 task :php_modules do

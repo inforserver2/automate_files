@@ -1,0 +1,14 @@
+# RVM
+# http://igorrocha.com.br/instalando-rvm-no-ubuntu-12-04-e-ambientes-ruby-2-0-0-com-rails-4-0-0-beta1-e-ruby-1-9-3-com-rails-3-2-13/
+# dependency
+sudo apt-get install curl
+# GET stable version
+\curl -L https://get.rvm.io | bash -s stable
+# install
+source /etc/profile.d/rvm.sh
+# show version
+rvm -v
+# post intall
+type rvm | head -n 1
+rvm requirements
+# done
