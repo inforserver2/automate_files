@@ -150,25 +150,27 @@ end
 task :rails do
 
   # Update rubygems
-  run "( ! gem list | grep rubygems-update ) && (gem install rubygems-update && update_rubygems) || echo already installed!"
+  run "( ! gem list | grep rubygems-update ) && (gem install rubygems-update && update_rubygems) || echo rubygems-update already installed!"
 
   # install ruby on rails and utilities
-  run "( ! gem list | grep rails ) && gem install rails -f || echo already installed!"
-  run "( ! gem list | grep whenever ) && gem install whenever || echo already installed!"
-  run "( ! gem list | grep annotate ) && gem install annotate || echo already installed!"
-  run "( ! gem list | grep astrails-safe ) && gem install astrails-safe || echo already installed!"
-  run "( ! gem list | grep delayed_job ) && gem install delayed_job || echo already installed!"
-  run "( ! gem list | grep therubyracer ) && gem install therubyracer || echo already installed!"
-  run "( ! gem list | grep pg ) && gem install pg || echo already installed!"
-  run "( ! gem list | grep mysql2 ) && gem install mysql2 || echo already installed!"
-  run "( ! gem list | grep rmagick ) && gem install rmagick || echo already installed!"
-  run "( ! gem list | grep sqlite3 ) && gem install sqlite3 || echo already installed!"
-  run "( ! gem list | grep carrierwave ) && gem install carrierwave || echo already installed!"
-  run "( ! gem list | grep rspec ) && gem install rspec || echo already installed!"
-  run "( ! gem list | grep sass ) && gem install sass || echo already installed!"
+  run "( ! gem list | grep rails ) && gem install rails -f || echo rails already installed!"
+  run "( ! gem list | grep whenever ) && gem install whenever || echo whenever already installed!"
+  run "( ! gem list | grep annotate ) && gem install annotate || echo annotate already installed!"
+  run "( ! gem list | grep astrails-safe ) && gem install astrails-safe || echo astrails-safe already installed!"
+  run "( ! gem list | grep delayed_job ) && gem install delayed_job || echo delayed_job already installed!"
+  run "( ! gem list | grep therubyracer ) && gem install therubyracer || echo therubyracer already installed!"
+  run "( ! gem list | grep pg ) && gem install pg || echo pg already installed!"
+  run "( ! gem list | grep mysql2 ) && gem install mysql2 || echo mysql already installed!"
+  run "( ! gem list | grep rmagick ) && gem install rmagick || echo rmagick already installed!"
+  run "( ! gem list | grep sqlite3 ) && gem install sqlite3 || echo sqlite already installed!"
+  run "( ! gem list | grep carrierwave ) && gem install carrierwave || echo carrierwave already installed!"
+  run "( ! gem list | grep rspec ) && gem install rspec || echo rspec already installed!"
+  run "( ! gem list | grep sass ) && gem install sass || echo sass already installed!"
+  run "( ! gem list | grep forward ) && gem install forward || echo forward already installed!"
+
 
   # setup passenger
-  run "( ! gem list | grep passenger ) && gem install passenger || echo already installed!"
+  run "( ! gem list | grep passenger ) && gem install passenger || echo passenger already installed!"
   run "#{folder}/automate_files/passenger_config"
 end
 
