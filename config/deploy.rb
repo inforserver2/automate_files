@@ -85,6 +85,7 @@ task :basics do
   run "sudo apt-get -y install libxslt-dev libxml2-dev"
 
   # install ruby
+  # rm -rf $(gem env gemdir) # if need to clean gems
   #run "sudo apt-get -y install ruby1.9.3"
   run "#{folder}/automate_files/rvm_install"
 
