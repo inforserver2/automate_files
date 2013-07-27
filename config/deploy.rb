@@ -83,8 +83,11 @@ task :basics do
   run "sudo apt-get -y install postgresql libpq-dev" # need configure see attach url
   # sudo apt-get -y install pgadmin3 #needs X-11
   run "sudo apt-get -y install libxslt-dev libxml2-dev"
-  # install rails
-  run "sudo apt-get -y install ruby1.9.3"
+
+  # install ruby
+  #run "sudo apt-get -y install ruby1.9.3"
+  run "#{folder}/automate_files/rvm_install"
+
   # http://www.compilando.org/wp/sem-categoria/resolva-o-erro-add-apt-repository-command-not-found-no-ubuntu-natty-11-04
   run "sudo apt-get -y install python-software-properties"
   # PHP
