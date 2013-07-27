@@ -11,10 +11,10 @@ cd ~/pack/files
 if ! dpkg -s libmysqlclient16 &> /dev/null ; then
 	echo installing dependence libmysqlclient16...
 	if [ "$1" == "i386" ]; then
-		#wget http://security.ubuntu.com/ubuntu/pool/main/m/mysql-5.1/libmysqlclient16_5.1.66-0ubuntu0.11.10.2_i386.deb
+        wget http://sphinxsearch.com/files/sphinxsearch_2.0.8-release-0ubuntu11~precise1_i386.deb
 		dpkg -i libmysqlclient16_5.1.66-0ubuntu0.11.10.2_i386.deb
 	elif [ "$1" == "amd64" ]; then
-		#wget http://security.ubuntu.com/ubuntu/pool/main/m/mysql-5.1/libmysqlclient16_5.1.66-0ubuntu0.11.10.2_amd64.deb
+        wget http://sphinxsearch.com/files/sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
 		dpkg -i libmysqlclient16_5.1.66-0ubuntu0.11.10.2_amd64.deb
 	fi
 	echo ok.
@@ -25,11 +25,12 @@ fi
 if ! dpkg -s sphinxsearch &> /dev/null ; then
 	echo installing sphinxsearch...
 	if [ "$1" == "i386" ]; then
-		#wget http://sphinxsearch.com/files/sphinxsearch_2.0.6-release-0ubuntu11~lucid_i386.deb
+        #wget http://sphinxsearch.com/downloads/accept.php?file=sphinxsearch_2.0.8-release-0ubuntu11~precise1_i386.deb
 		dpkg -i sphinxsearch_2.0.6-release-0ubuntu11~lucid_i386.deb
+
 	elif [ "$1" == "amd64" ]; then
-		#wget http://sphinxsearch.com/files/sphinxsearch_2.0.6-release-0ubuntu11~lucid_amd64.deb
-		dpkg -i sphinxsearch_2.0.6-release-0ubuntu11~lucid_amd64.deb
+        #wget http://sphinxsearch.com/downloads/accept.php?file=sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
+		dpkg -i sphinxsearch_2.0.8-release-0ubuntu11~precise1_amd64.deb
 	fi
 	echo ok.
 else
@@ -37,4 +38,4 @@ else
 fi
 
 echo done.
-echo 
+echo
