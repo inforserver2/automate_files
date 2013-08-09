@@ -1,0 +1,9 @@
+sudo apt-get install bzip2
+cd ~
+wget https://bitbucket.org/zhb/iredmail/downloads/iRedMail-0.8.5.tar.bz2
+tar xjf iRedMail-0.8.5.tar.bz2
+cd /root/iRedMail-0.8.5/
+bash iRedMail.sh
+
+# setup your mailserver
+# atencao nao instalar a merda do ip2ban e nao rodar o script do firewall

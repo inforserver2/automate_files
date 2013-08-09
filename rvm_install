@@ -12,3 +12,6 @@ rvm -v
 type rvm | head -n 1
 rvm requirements
 # done
+# ? link your bashrc to rvm.sh
+# ? install ruby 2 with 'rvm list known' and 'rvm install version'
+# ? create your gemsets
