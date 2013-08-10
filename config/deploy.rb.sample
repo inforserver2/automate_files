@@ -22,6 +22,7 @@
 # > add virtual domain to start an fresh app - 30m
 # execute #{folder}/automate_files/rvm_install
 # execute #{folder}/automate_files/heorku_toolbelt
+# install mailutils and kerio follow kerio_install script
 #
 # ----------------------------------------------------------------------------------------------
 # Desktop adds
