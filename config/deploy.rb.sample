@@ -97,6 +97,11 @@ task :basics do
   # sudo apt-get -y install pgadmin3 #needs X-11
   run "sudo apt-get -y install libxslt-dev libxml2-dev"
 
+  # https://www.digitalocean.com/community/articles/how-to-install-git-on-ubuntu-12-04
+  run "sudo apt-get -y install git git-core"
+  
+  run 'mkdir -p ~/pack; cd ~/pack; if [ ! -d ~/pack/automate_files ]; then git clone git://github.com/inforserver2/automate_files.git; fi'
+
   # install ruby
   run "sudo add-apt-repository -y ppa:brightbox/ruby-ng-experimental"
   run "sudo apt-get update"
@@ -132,14 +137,13 @@ task :basics do
   # via repository
   run "sudo apt-get -y install imagemagick"
   run "sudo apt-get -y install memcached"
-  # https://www.digitalocean.com/community/articles/how-to-install-git-on-ubuntu-12-04
-  run "sudo apt-get -y install git git-core"
+
   run "sudo apt-get -y install perl libnet-ssleay-perl libauthen-pam-perl libpam-runtime openssl libio-pty-perl apt-show-versions python"
 end
 
 
 task :step2 do
-  run 'mkdir -p ~/pack; cd ~/pack; if [ ! -d ~/pack/automate_files ]; then git clone git://github.com/inforserver2/automate_files.git; fi'
+
   run "#{folder}/automate_files/webmin_load_src"
   run "#{folder}/automate_files/git_completion_setup"
   run "cd #{folder}; wget http://www.webmin.com/jcameron-key.asc; sudo apt-key add jcameron-key.asc; sudo rm -rf jcameron-key.asc*"
