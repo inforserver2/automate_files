@@ -77,6 +77,7 @@ set :deploy_to, "/root/pack"
 set :use_sudo, false
 set :folder, "~/pack"
 set :hostname, "server"
+set :gemOptions, "--no-ri --no-rdoc"
 set :domain, "domain.net"
 
 default_run_options[:pty] = true
@@ -173,24 +174,24 @@ task :rails do
   run "( ! gem list | grep rubygems-update ) && (gem install rubygems-update && update_rubygems) || echo rubygems-update already installed!"
 
   # install ruby on rails and utilities
-  run "( ! gem list | grep rails ) && gem install rails -f || echo rails already installed!"
-  run "( ! gem list | grep whenever ) && gem install whenever || echo whenever already installed!"
-  run "( ! gem list | grep annotate ) && gem install annotate || echo annotate already installed!"
-  run "( ! gem list | grep astrails-safe ) && gem install astrails-safe || echo astrails-safe already installed!"
-  run "( ! gem list | grep delayed_job ) && gem install delayed_job || echo delayed_job already installed!"
-  run "( ! gem list | grep therubyracer ) && gem install therubyracer || echo therubyracer already installed!"
-  run "( ! gem list | grep pg ) && gem install pg || echo pg already installed!"
-  run "( ! gem list | grep mysql2 ) && gem install mysql2 || echo mysql already installed!"
-  run "( ! gem list | grep rmagick ) && gem install rmagick || echo rmagick already installed!"
-  run "( ! gem list | grep sqlite3 ) && gem install sqlite3 || echo sqlite already installed!"
-  run "( ! gem list | grep carrierwave ) && gem install carrierwave || echo carrierwave already installed!"
-  run "( ! gem list | grep rspec ) && gem install rspec || echo rspec already installed!"
-  run "( ! gem list | grep sass ) && gem install sass || echo sass already installed!"
-  run "( ! gem list | grep forward ) && gem install forward || echo forward already installed!"
+  run "( ! gem list | grep rails ) && gem install rails #{gemOptions} -f || echo rails already installed!"
+  run "( ! gem list | grep whenever ) && gem install whenever #{gemOptions}|| echo whenever already installed!"
+  run "( ! gem list | grep annotate ) && gem install annotate #{gemOptions}|| echo annotate already installed!"
+  run "( ! gem list | grep astrails-safe ) && gem install astrails-safe #{gemOptions}|| echo astrails-safe already installed!"
+  run "( ! gem list | grep delayed_job ) && gem install delayed_job #{gemOptions}|| echo delayed_job already installed!"
+  run "( ! gem list | grep therubyracer ) && gem install therubyracer #{gemOptions}|| echo therubyracer already installed!"
+  run "( ! gem list | grep pg ) && gem install pg #{gemOptions}|| echo pg already installed!"
+  run "( ! gem list | grep mysql2 ) && gem install mysql2 #{gemOptions}|| echo mysql already installed!"
+  run "( ! gem list | grep rmagick ) && gem install rmagick #{gemOptions}|| echo rmagick already installed!"
+  run "( ! gem list | grep sqlite3 ) && gem install sqlite3 #{gemOptions}|| echo sqlite already installed!"
+  run "( ! gem list | grep carrierwave ) && gem install carrierwave #{gemOptions}|| echo carrierwave already installed!"
+  run "( ! gem list | grep rspec ) && gem install rspec-rails #{gemOptions}|| echo rspec already installed!"
+  run "( ! gem list | grep sass ) && gem install sass #{gemOptions}|| echo sass already installed!"
+  run "( ! gem list | grep forward ) && gem install forward #{gemOptions}|| echo forward already installed!"
 
 
   # setup passenger
-  run "( ! gem list | grep passenger ) && gem install passenger || echo passenger already installed!"
+  run "( ! gem list | grep passenger ) && gem install passenger #{gemOptions}|| echo passenger already installed!"
   run "#{folder}/automate_files/passenger_config"
 end
 
