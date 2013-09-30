@@ -2,6 +2,7 @@
 # install vbox-tools
 # set fixed ip on remote linux station
 # set password for root with "sudo passwd root" command
+# manually install "apt-get -y install ssh openssh-server"
 #
 # make sure your "commander linux" is with capistrano, ruby and git installed
 # git clone automate_files
