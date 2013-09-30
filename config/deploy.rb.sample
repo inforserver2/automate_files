@@ -171,7 +171,7 @@ end
 task :rails do
 
   # Update rubygems
-  run "( ! gem list | grep rubygems-update ) && (gem install rubygems-update && update_rubygems) || echo rubygems-update already installed!"
+  run "( ! gem list | grep rubygems-update ) && (gem install rubygems-update #{gemOptions} && update_rubygems) || echo rubygems-update already installed!"
 
   # install ruby on rails and utilities
   run "( ! gem list | grep rails ) && gem install rails #{gemOptions} -f || echo rails already installed!"
@@ -188,6 +188,7 @@ task :rails do
   run "( ! gem list | grep rspec ) && gem install rspec-rails #{gemOptions}|| echo rspec already installed!"
   run "( ! gem list | grep sass ) && gem install sass #{gemOptions}|| echo sass already installed!"
   run "( ! gem list | grep forward ) && gem install forward #{gemOptions}|| echo forward already installed!"
+  run "( ! gem list | grep nokogiri ) && gem install nokogiri #{gemOptions}|| echo nokogiri already installed!"
 
 
   # setup passenger
