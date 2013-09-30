@@ -1,9 +1,14 @@
+#!/bin/bash
+
 # VIM configs
 # checkout https://github.com/akitaonrails/vimfiles
 
 if [ ! -d ~/.vim ]; then 
 	echo cloning vimfiles...
 	git clone git://github.com/akitaonrails/vimfiles.git ~/.vim
+	cd ~/.vim/bundle
+	## embedding zenCoding for Vim
+	git clone http://github.com/mattn/emmet-vim.git
 fi
 
 	echo updating vimfiles
@@ -14,3 +19,5 @@ if [ ! -f ~/.vimrc ]; then
 	echo source ~/.vim/vimrc > ~/.vimrc
 
 fi
+
+

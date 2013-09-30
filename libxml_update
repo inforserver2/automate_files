@@ -1,0 +1,14 @@
+#!/bin/bash
+#2 update libxml to version 2.8
+
+cd ~/pack/files
+if [ ! -d "libxml2" ]; then
+	git clone git://git.gnome.org/libxml2
+	cd libxml2
+	./configure --with-python=/usr/include/python3.3m
+	make
+	make check
+	make install
+else
+	echo already installed
+fi

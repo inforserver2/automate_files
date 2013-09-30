@@ -1,5 +1,8 @@
+#!/bin/bash
+
 # RVM
 # http://igorrocha.com.br/instalando-rvm-no-ubuntu-12-04-e-ambientes-ruby-2-0-0-com-rails-4-0-0-beta1-e-ruby-1-9-3-com-rails-3-2-13/
+
 # dependency
 sudo apt-get install curl
 # GET stable version
@@ -13,5 +16,10 @@ type rvm | head -n 1
 rvm requirements
 # done
 # ? link your bashrc to rvm.sh
-# ? install ruby 2 with 'rvm list known' and 'rvm install version'
+# ? install ruby versions with 'rvm list known' and 'rvm install version'
 # ? create your gemsets
+# ? set defaults like : rvm use <ruby version>@<gemset name> --default
+# ? create rvmrc to the projects 
+
+# ? rvm --rvmrc --create “nome da gemset em rvm list gemsets”
+# ? remove "warning" in the .rvmrc file

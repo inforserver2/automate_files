@@ -1,3 +1,4 @@
+#!/bin/bash
 sudo apt-get install bzip2
 cd ~
 wget https://bitbucket.org/zhb/iredmail/downloads/iRedMail-0.8.5.tar.bz2
