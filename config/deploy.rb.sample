@@ -205,7 +205,9 @@ task :php_modules do
     #tar -zxvf phpMyAdmin-3.5.2.2-english.tar.gz
     #cp -rf phpMyAdmin-3.5.2.2-english /var/www/tools/phpMyAdmin
     # OR
-  run 'echo "phpmyadmin phpmyadmin/app-password-confirm password" | debconf-set-selections; echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections; echo "phpmyadmin phpmyadmin/mysql/admin-pass password {senha}" | debconf-set-selections; echo "phpmyadmin phpmyadmin/mysql/app-pass password" | debconf-set-selections; echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections; sudo apt-get install phpmyadmin -y'
+    
+    # http://gercogandia.blogspot.com.br/2012/11/automatic-unattended-install-of.html
+    run 'echo "phpmyadmin phpmyadmin/app-password-confirm password {senha}" | debconf-set-selections; echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections; echo "phpmyadmin phpmyadmin/mysql/admin-pass password {senha}" | debconf-set-selections; echo "phpmyadmin phpmyadmin/mysql/app-pass password {senha}" | debconf-set-selections; echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections; sudo apt-get install phpmyadmin -y'
 
     # PHPPGADMIN
     # config at http://www.vivaolinux.com.br/dica/Instalacao-e-configuracao-do-PostgreSQL-e-phpPgAdmin-no-Debian
@@ -214,11 +216,12 @@ task :php_modules do
     # tar -zxvf phpPgAdmin-5.0.4.tar.gz
     # cp -rf phpPgAdmin-5.0.4 /var/www/tools/phpPgAdmin
     # OR
+    
   run "sudo apt-get -y install phppgadmin"
   run "sed -i 's/^local   all             all                                     peer$/local   all             all                                     trust/' /etc/postgresql/9.1/main/pg_hba.conf"
   run 'sed -i "s#_security[\']] = true#_security\'] = false#g" /etc/phppgadmin/config.inc.php'
   run "sed -i 's/^# allow from all/ allow from all/' /etc/phppgadmin/apache.conf"
-  #  run "sudo -u postgres  psql -d postgres -U postgres -c \"ALTER USER postgres WITH PASSWORD '{senha}';\" "
+  run "sudo -u postgres  psql -d postgres -U postgres -c \"ALTER USER postgres WITH PASSWORD '{senha}';\" "
   run "#{folder}/automate_files/set_mod_rewrite_on"
   run "service apache2 restart"
 
