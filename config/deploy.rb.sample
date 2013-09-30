@@ -6,11 +6,14 @@
 # git clone automate_files
 # enter automate_files folder
 #
-# user the command "capify ." to start use capistrano
+
 # update config/deploy.rb with your needs
+# remember to set your password overwriting {senha} param
+# make sure the port, domains, hosts setting are ok
+# user the command "capify ." to start use capistrano
 # use it with cap command
-# verify the port, domains, hosts if all is ok
-# set  your password overwriting {senha} param
+
+
 
 #-----------------------------------------------------------------------
 #
@@ -20,9 +23,11 @@
 # > setup and test apache main domain... questions about log files - 30m
 # > setup and test 2 email users on the main domain - update config files - check templates - 30m
 # > add virtual domain to start an fresh app - 30m
+
 # execute #{folder}/automate_files/rvm_install
 # execute #{folder}/automate_files/heorku_toolbelt
 # install mailutils and kerio follow kerio_install script
+
 #
 # ----------------------------------------------------------------------------------------------
 # Desktop adds
