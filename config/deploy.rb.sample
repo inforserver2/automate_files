@@ -2,7 +2,7 @@
 # set fixed ip on remote linux station
 # set password for root with "sudo passwd root" command
 #
-# make sure your linux is with capistrano, ruby and git installed
+# make sure your "commander linux" is with capistrano, ruby and git installed
 # git clone automate_files
 # enter automate_files folder
 #
