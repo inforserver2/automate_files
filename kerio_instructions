@@ -18,10 +18,11 @@ dpkg -i setup/deb/kerio-connect-7.1.3-2461-linux.deb
 # follow the questions to set this up
 # access https://localhost:4040/admin
 
-
 - crack it
 mv /opt/kerio/mailserver/mailserver /opt/kerio/mailserver/mailserver.original
-cp -rf crack/mailserver /opt/kerio/mailserver
+cp -rf crack/* /opt/kerio/mailserver
+
+- Make use of license.key when needed
 
 
 - setup kerio mail users
