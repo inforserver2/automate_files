@@ -2,8 +2,8 @@
 
 - install mailutils
 
-run 'sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postfix'
-run "sudo apt-get -y install mailutils"
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postfix
+sudo apt-get -y install mailutils
 
 
 - download and install kerio
@@ -15,12 +15,16 @@ unrar x Kerio_Connect_v7.1.3.2461_Linux.rar
 rm -rf Kerio_Connect_v7.1.3.2461_Linux.rar
 cd Kerio\ Connect\ v7.1.3.2461\ Linux
 dpkg -i setup/deb/kerio-connect-7.1.3-2461-linux.deb
+
 # follow the questions to set this up
 # access https://localhost:4040/admin
 
 - crack it
 mv /opt/kerio/mailserver/mailserver /opt/kerio/mailserver/mailserver.original
 cp -rf crack/* /opt/kerio/mailserver
+
+cd ~
+rm -rf /tmp/kerio
 
 - Make use of license.key when needed
 
