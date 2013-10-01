@@ -66,6 +66,16 @@
 #gem install forward
 #foward [port]
 #
+# Chrome
+# wget -q -O- https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+# sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list'
+# sudo apt-get update
+# sudo apt-get install -y google-chrome-stable
+#
+# Safari Installation
+# http://www.guguncube.com/694/ubuntu-installation-of-firefox-chrome-opera-safari-internet-browsers-in-ubuntu-12-04-12-10-13-10
+#
+#
 #-----------------------------------------------------------------------
 
 
