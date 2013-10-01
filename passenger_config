@@ -1,5 +1,5 @@
 echo Getting the version of passenger...
-var=`gem list | grep passenger | awk '{print $2}' | cut -d ")" -f 1 | cut -d    ..."(" -f 2`
+var=`gem list | grep passenger | awk '{print $2}' | cut -d ")" -f 1 | cut -d "(" -f 2`
 ruby_version=$(ruby -e "puts RUBY_VERSION")
 
 echo $var
