@@ -161,12 +161,12 @@ end
 task :vim do
   run "sudo apt-get -y install exuberant-ctags ncurses-term ack ncurses-dev"
   # compile vim if wants CommandT
-  run "#{folder}/automate_files/compile_vim"
+  # run "#{folder}/automate_files/compile_vim"
   # install vim normally
-  # run "apt-get -y install vim vim-nox vim-gtk"
+  run "apt-get -y install vim vim-nox vim-gtk"
   run "#{folder}/automate_files/load_vimfiles"
   run "#{folder}/automate_files/personal_vim"
-  run "#{folder}/automate_files/command_t_install"
+  # run "#{folder}/automate_files/command_t_install"
 end
 
 
