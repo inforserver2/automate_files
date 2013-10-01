@@ -281,6 +281,10 @@ task :adjusts do
     # MAIL=~/Maildir
 end
 
+task :rvm do
+  run "#{folder}/automate_files/rvm_install"
+end
+
 task :mail do
 
     run 'sudo DEBIAN_FRONTEND=noninteractive apt-get -y install postfix'
