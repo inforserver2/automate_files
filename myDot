@@ -1,5 +1,5 @@
-cd ~/pack/automate_files
+cd ~/automate_files
 ./git_completion_setup
 ./load_vimfiles
 ./personal_vim
-echo 'source /etc/profile.d/rvm.sh' >> ~./bashrc
+echo 'source /etc/profile.d/rvm.sh' >> ~/.bashrc
