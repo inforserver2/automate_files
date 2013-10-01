@@ -105,6 +105,7 @@ task :basics do
   run 'echo "mysql-server mysql-server/root_password password {senha}" | debconf-set-selections; echo "mysql-server mysql-server/root_password_again password {senha}" | debconf-set-selections; sudo apt-get -y install mysql-server'
   run "sudo apt-get -y install postgresql libpq-dev" # need configure see attach url
   # sudo apt-get -y install pgadmin3 #needs X-11
+  run "sudo apt-get -y install libtool"
   run "sudo apt-get -y install libxslt-dev libxml2-dev"
 
   # https://www.digitalocean.com/community/articles/how-to-install-git-on-ubuntu-12-04
