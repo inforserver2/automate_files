@@ -283,7 +283,7 @@ end
 
 task :rvm do
   run "#{folder}/automate_files/rvm_install"
-  run "echo 'source /etc/profile.d/rvm.sh' >> ~./bashrc"
+  run "echo 'source /etc/profile.d/rvm.sh' >> ~/.bashrc"
 end
 
 task :mail do
