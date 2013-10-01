@@ -5,6 +5,7 @@ cd ~/pack/automate_files/files
 if [ ! -d "libxml2" ]; then
 	git clone git://git.gnome.org/libxml2
 	cd ~/pack/automate_files/libxml2
+	./autogen.sh
 	./configure --with-python=/usr/include/python3.3m
 	make
 	make check
