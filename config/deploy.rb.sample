@@ -150,7 +150,9 @@ task :step2 do
   run "sudo apt-get -y update"
   run "sudo apt-get -y install webmin"
   # Install Sphinx
-  run "#{folder}/automate_files/sphinx_install #{plat}"
+  # run "#{folder}/automate_files/sphinx_install #{plat}"
+  run "sudo add-apt-repository -y ppa:builds/sphinxsearch-stable"
+  run "sudo apt-get -y install sphinxsearch"
 end
 
 task :keygen do
@@ -198,6 +200,7 @@ task :rails do
   run "( ! gem list | grep sass ) && gem install sass #{gemOptions}|| echo sass already installed!"
   run "( ! gem list | grep forward ) && gem install forward #{gemOptions}|| echo forward already installed!"
   run "( ! gem list | grep nokogiri ) && gem install nokogiri #{gemOptions}|| echo nokogiri already installed!"
+  run "( ! gem list | grep capistrano ) && gem install capistrano #{gemOptions}|| echo capistrano already installed!"
 
 
   # setup passenger
