@@ -101,7 +101,7 @@ task :basics do
   run "apt-get -y install ntp ntpdate"
   run "apt-get -y install ssh openssh-server"
   run "apt-get -y install lynx libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev build-essential"
-  run "apt-get -y install  nmap tree unzip unrar bind9 dnsutils apache2 libcurl4-openssl-dev apache2-prefork-dev libapr1-dev libaprutil1-dev sqlite3 mysql-client"
+  run "apt-get -y install  nmap tree unzip unrar-free bind9 dnsutils apache2 libcurl4-openssl-dev apache2-prefork-dev libapr1-dev libaprutil1-dev sqlite3 mysql-client"
   run 'echo "mysql-server mysql-server/root_password password {senha}" | debconf-set-selections; echo "mysql-server mysql-server/root_password_again password {senha}" | debconf-set-selections; sudo apt-get -y install mysql-server'
   run "sudo apt-get -y install postgresql libpq-dev" # need configure see attach url
   # sudo apt-get -y install pgadmin3 #needs X-11
@@ -113,13 +113,15 @@ task :basics do
   
   run 'mkdir -p ~/pack; cd ~/pack; if [ ! -d ~/pack/automate_files ]; then git clone git://github.com/inforserver2/automate_files.git; fi'
 
+  # http://www.compilando.org/wp/sem-categoria/resolva-o-erro-add-apt-repository-command-not-found-no-ubuntu-natty-11-04
+  run "sudo apt-get -y install python-software-properties"
+
   # install ruby
   run "sudo add-apt-repository -y ppa:brightbox/ruby-ng-experimental"
   run "sudo apt-get update"
   run "sudo apt-get install -y ruby2.0 ruby2.0-dev"
 
-  # http://www.compilando.org/wp/sem-categoria/resolva-o-erro-add-apt-repository-command-not-found-no-ubuntu-natty-11-04
-  run "sudo apt-get -y install python-software-properties"
+
   
   # install python 3.3
   run "sudo add-apt-repository -y ppa:fkrull/deadsnakes"
