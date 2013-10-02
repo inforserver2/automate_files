@@ -281,8 +281,9 @@ task :adjusts do
     # MAIL=~/Maildir
 end
 
-task :rvm do
+task :tools do
   run "#{folder}/automate_files/rvm_install"
+  run "#{folder}/automate_files/heroku_toolbelt"
   run "echo 'source /etc/profile.d/rvm.sh' >> ~/.bashrc"
 end
 
@@ -318,6 +319,7 @@ task :prepare do
   php_modules
   js
   cfg
+  tools
   # mail
 end
 
