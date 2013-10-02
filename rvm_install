@@ -19,6 +19,7 @@ rvm requirements
 rvm install 2.0.0
 rvm --default use 2.0.0
 rvm gemset create rails4
+gem install rails --no-ri --no-rdoc
 rvm use 2.0.0@rails4 --default
 # rvm --create --rvmrc 2.0.0@rails4
 
