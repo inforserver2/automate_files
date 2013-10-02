@@ -20,7 +20,7 @@ rvm install 2.0.0
 rvm --default use 2.0.0
 rvm gemset create rails4
 rvm use 2.0.0@rails4 --default
-rvm --create --rvmrc 2.0.0@rails4
+# rvm --create --rvmrc 2.0.0@rails4
 
 
 # done
