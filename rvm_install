@@ -14,6 +14,15 @@ rvm -v
 # post intall
 type rvm | head -n 1
 rvm requirements
+
+
+rvm install 2.0.0
+rvm --default use 2.0.0
+rvm gemset create rails4
+rvm use 2.0.0@rails4 --default
+rvm --create --rvmrc 2.0.0@rails4
+
+
 # done
 # ? link your bashrc to rvm.sh
 # ? install ruby versions with 'rvm list known' and 'rvm install version'
