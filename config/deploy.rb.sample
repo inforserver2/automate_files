@@ -123,6 +123,7 @@ task :basics do
   run "sudo apt-get install -y ruby2.0 ruby2.0-dev"
 
 
+
   
   # install python 3.3
   run "sudo add-apt-repository -y ppa:fkrull/deadsnakes"
@@ -288,6 +289,7 @@ task :tools do
   run "#{folder}/automate_files/rvm_install"
   run "#{folder}/automate_files/heroku_toolbelt"
   run "echo 'source /etc/profile.d/rvm.sh' >> ~/.bashrc"
+  run "ln -sf /usr/bin/ruby2.0 /usr/bin/ruby"  
 end
 
 task :mail do
