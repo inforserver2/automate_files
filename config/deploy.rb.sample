@@ -20,8 +20,8 @@
 # make sure the port, domains, hosts setting are ok
 # user the command "capify ." to start use capistrano
 # use it with cap command
-# FOR MANNUAL INSTALLATION hit "cap deploy basics"
-# FOR A FULL INSTALLATION hit "cap deploy prepare"
+# FOR MANNUAL INSTALLATION hit "cap basics"
+# FOR A FULL INSTALLATION hit "cap prepare"
 
 
 
