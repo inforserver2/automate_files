@@ -1,4 +1,5 @@
 #!/bin/bash
+# setup for Ubuntu 12.04LTS desktop 32bits
 # install vbox-tools
 # set fixed ip on remote linux station
 # set password for root with "sudo passwd root" command
