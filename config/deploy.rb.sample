@@ -1,10 +1,15 @@
 #!/bin/bash
+#
+# CHANGES TO BE MADE ON THE DESTIN SERVER
 # setup for Ubuntu 12.04LTS desktop 32bits
 # install vbox-tools
 # set fixed ip on remote linux station
 # set password for root with "sudo passwd root" command
 # manually install "apt-get -y install ssh openssh-server"
 #
+#
+#
+# CHANGES TO BE MADE ON HOST COMMANDER
 # make sure your "commander linux" is with capistrano, ruby and git installed
 # git clone automate_files
 # enter automate_files folder
@@ -15,6 +20,8 @@
 # make sure the port, domains, hosts setting are ok
 # user the command "capify ." to start use capistrano
 # use it with cap command
+# FOR MANNUAL INSTALLATION hit "cap deploy basics"
+# FOR A FULL INSTALLATION hit "cap deploy prepare"
 
 
 
@@ -97,7 +104,7 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 task :basics do
-  run "sudo export DEBIAN_FRONTEND=noninteractive"
+  run "export DEBIAN_FRONTEND=noninteractive"
   run "sudo apt-get -y update"
   run "sudo apt-get -y upgrade"
   run "apt-get -y install ntp ntpdate"
