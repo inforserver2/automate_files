@@ -84,6 +84,17 @@
 # http://www.guguncube.com/694/ubuntu-installation-of-firefox-chrome-opera-safari-internet-browsers-in-ubuntu-12-04-12-10-13-10
 #
 #
+# SETUP SSL CERTIFCATE ON UBUNTU
+#
+# https://www.digitalocean.com/community/articles/how-to-set-up-multiple-ssl-certificates-on-one-ip-with-apache-on-ubuntu-12-04
+# https://www.digitalocean.com/community/articles/how-to-create-a-ssl-certificate-on-apache-for-ubuntu-12-04
+# :: INFO ABAOUT CUSTOMS REDIRECTS
+# https://www.linode.com/wiki/index.php/Apache2_SSL_in_Ubuntu
+# http://www.cyberciti.biz/faq/apache-redirect-domaincom-to-wwwdomaincom/
+# :: WHERE TO BUY
+# http://www.instantssl.com/
+# http://www.rapidssl.com/
+# http://www.cheapssls.com/
 #-----------------------------------------------------------------------
 
 
