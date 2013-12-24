@@ -21,7 +21,9 @@ dpkg -i kerio-connect-7.1.3-2461-linux.deb
 - crack it
 mv /opt/kerio/mailserver/mailserver /opt/kerio/mailserver/mailserver.original
 cp -rf mailserver /opt/kerio/mailserver
+cp -rf license.key /opt/kerio/mailserver/license
 chmod 777 /opt/kerio/mailserver/mailserver
+chmod 777 /opt/kerio/mailserver/license/license.key
 
 cd ~
 
