@@ -10,22 +10,20 @@ sudo apt-get -y install mailutils
 
 mkdir /tmp/kerio
 cd /tmp/kerio
-wget https://dl.dropboxusercontent.com/s/qn323ypzhp1ksdi/Kerio_Connect_v7.1.3.2461_Linux.rar
-unrar x Kerio_Connect_v7.1.3.2461_Linux.rar
-rm -rf Kerio_Connect_v7.1.3.2461_Linux.rar
-cd Kerio\ Connect\ v7.1.3.2461\ Linux
-dpkg -i setup/DEB/kerio-connect-7.1.3-2461-linux.deb
+wget https://www.dropbox.com/s/2vsihyb07tys1hz/kerio-connect-7.1.3-2461-linux.deb
+wget https://www.dropbox.com/s/lbwb2573ksadkn6/mailserver
+wget https://www.dropbox.com/s/jzczbplh44t5dhh/license.key
+dpkg -i kerio-connect-7.1.3-2461-linux.deb
 
 # follow the questions to set this up
 # access https://localhost:4040/admin
 
 - crack it
 mv /opt/kerio/mailserver/mailserver /opt/kerio/mailserver/mailserver.original
-cp -rf crack/* /opt/kerio/mailserver
+cp -rf mailserver /opt/kerio/mailserver
 chmod 777 /opt/kerio/mailserver/mailserver
 
 cd ~
-rm -rf /tmp/kerio
 
 - Make use of license.key when needed
 
