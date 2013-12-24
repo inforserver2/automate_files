@@ -25,6 +25,9 @@ cp -rf license.key /opt/kerio/mailserver/license
 chmod 777 /opt/kerio/mailserver/mailserver
 chmod 777 /opt/kerio/mailserver/license/license.key
 
+service kerio-connect stop
+service kerio-connect start
+
 cd ~
 
 - Make use of license.key when needed
