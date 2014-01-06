@@ -24,6 +24,34 @@
 # FOR A FULL INSTALLATION hit "cap prepare"
 
 
+# Seteps to get a Server Setup Proccess
+# ----------------------------------------------------------------------------
+# +full installation
+#
+# +webmin adjusts		
+# 
+# +dns
+# 
+# +server users 
+# 
+# +apache virtual domains
+# 
+# +database users for mysql-postgresql
+# 
+# +deploy script staging/production
+#      - database file
+#      - virtual config
+# 
+# +gen guides to access
+#      - root access (shell, mysql)
+#      - production user (shell, postgres, mysql, virtual)
+#      - staging user (shell, postgres, mysql, virtual)
+# 
+# +create the redirections for virtuals
+#	pending
+#
+# ---------------------------------------------------------------------------
+
 
 #-----------------------------------------------------------------------
 #
