@@ -155,6 +155,7 @@ task :basics do
   # sudo apt-get -y install pgadmin3 #needs X-11
   run "sudo apt-get -y install libtool autoconf"
   run "sudo apt-get -y install libxslt-dev libxml2-dev"
+  run "sudo apt-get install libqt4-dev libqtwebkit-dev"
 
   # https://www.digitalocean.com/community/articles/how-to-install-git-on-ubuntu-12-04
   run "sudo apt-get -y install git git-core"
