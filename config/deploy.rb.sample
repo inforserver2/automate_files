@@ -124,6 +124,13 @@
 # http://www.rapidssl.com/
 # http://www.cheapssls.com/
 #-----------------------------------------------------------------------
+#
+#
+# CAPISTRANO REQUIRES
+# add the command below to bashrc of the dev user
+# eval `ssh-agent -s`
+#
+#
 
 
 server "192.168.1.7", :web, :app, :db, primary: true
