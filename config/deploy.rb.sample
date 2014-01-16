@@ -316,7 +316,7 @@ task :js do
 
   # cofee-script
   run "sudo apt-get -y install npm"
-  run "npm install -g coffee-script"
+  run "sudo npm install coffee-script@1.1.2"
 end
 
 task :cfg do
