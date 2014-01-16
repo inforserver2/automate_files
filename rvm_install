@@ -15,7 +15,7 @@ rvm -v
 type rvm | head -n 1
 rvm requirements
 
-
+rvm install 2.0.0
 rvm install ruby-head
 rvm --default use ruby-head
 gem install passenger
