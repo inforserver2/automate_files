@@ -18,10 +18,10 @@ rvm requirements
 rvm install 2.0.0
 rvm install ruby-head
 rvm --default use ruby-head
-gem install passenger
 rvm gemset create rails4
 rvm use ruby-head@rails4 --default
 gem install rails --no-ri --no-rdoc
+gem install passenger
 passenger-install-apache2-module -a
 # rvm --create --rvmrc 2.0.0@rails4
 
