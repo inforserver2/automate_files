@@ -299,6 +299,8 @@ task :php_modules do
     # cp -rf phpPgAdmin-5.0.4 /var/www/tools/phpPgAdmin
     # OR
     
+  run "sudo useradd -m -s /bin/bash deploy"
+  run "sudo passwd -l deploy"
   run "sudo apt-get -y install phppgadmin"
   run "sed -i 's/^local   all             all                                     peer$/local   all             all                                     trust/' /etc/postgresql/9.1/main/pg_hba.conf"
   run 'sed -i "s#_security[\']] = true#_security\'] = false#g" /etc/phppgadmin/config.inc.php'
