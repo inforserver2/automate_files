@@ -6,6 +6,10 @@
 # set fixed ip on remote linux station
 # set password for root with "sudo passwd root" command
 # manually install "apt-get -y install ssh openssh-server"
+##### ATTENTION
+##### How to secure your linux
+##### http://feross.org/how-to-setup-your-linode/
+##### https://library.linode.com/securing-your-server
 #
 #
 #
