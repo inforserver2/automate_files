@@ -216,9 +216,11 @@ task :basics do
   run "sudo apt-get -y install perl libnet-ssleay-perl libauthen-pam-perl libpam-runtime openssl libio-pty-perl apt-show-versions python"
   
   # install redis
-  run "sed -i  '$ a\deb http://archive.ubuntu.com/ubuntu precise main universe' /etc/apt/sources.list"
+  run "sudo add-apt-repository -y ppa:rwky/redis"
   run "sudo apt-get -y update"
   run "sudo apt-get -y install redis-server"
+  
+  run "sudo apt-get -y install ack-grep"
   
 end
 
