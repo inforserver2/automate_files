@@ -28,6 +28,7 @@ cat >> ~/.vimrc <<-EOF
 
     let g:user_zen_expandabbr_key = '<c-e>'
     let g:use_zen_complete_tag = 1
+    let g:ackprg='ack-grep -H --nocolor --nogroup --column'
 
 EOF
 fi
