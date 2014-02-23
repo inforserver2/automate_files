@@ -16,7 +16,7 @@ type rvm | head -n 1
 rvm requirements
 
 rvm install 2.0.0
-rvm install ruby-head
+rvm install 2.1.0
 rvm --default use ruby-head
 rvm gemset create rails4
 rvm use ruby-head@rails4 --default
