@@ -340,6 +340,10 @@ task :js do
 
   # cofee-script
   run "sudo npm install coffee-script@1.1.2"
+  
+  # bower
+  run "sudo npm install -g bower"
+  
 end
 
 task :cfg do
