@@ -211,8 +211,7 @@ task :basics do
   run "sudo apt-get -y install aspell libevent-dev libgmp10 libgmp-dev curl libfile-next-perl"
   # http://hantys.blogspot.com.br/2012/04/instalando-imagemagick-ubuntu-1204.html
   run "sudo apt-get -y install libperl-dev"
-  run "sudo apt-get -y install libmagickwand-dev"
-  run "sudo apt-get -y install libmagickcore-dev libmagick++-dev"
+  run "sudo apt-get -y install libmagickwand-dev libmagickcore-dev libmagick++-dev libmagickcore4-extra libgraphviz-dev libgvc5"
   # via repository
   run "sudo apt-get -y install imagemagick"
   run "sudo apt-get -y install memcached"
