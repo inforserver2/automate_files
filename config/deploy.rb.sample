@@ -369,12 +369,16 @@ task :adjusts do
     # apt-get clean
     # sed -n 'Np' file
     # MAIL=~/Maildir
-    ### first try
-    #sudo rm -rf /var/lib/dpkg/info/a.* && sudo rm -rf /var/lib/dpkg/info/*.* && sudo apt-get clean && sudo apt-get install -f && sudo apt-get clean && sudo apt-get update
-    ### second try
-    # sudo apt-get install -f  && sudo apt-get upgrade -f && sudo apt-get dist-upgrade -f && sudo dpkg --configure -a
-    ### force try
-    # rm /var/lib/dpkg/info/* 
+    
+    # to fix problemas with apt-get
+    # sudo rm -rf /var/lib/dpkg/info/* 
+    # sudo apt-get clean
+    # sudo apt-get install -f 
+    # sudo apt-get upgrade -f 
+    # sudo apt-get dist-upgrade -f 
+    # sudo apt-get update
+    # sudo dpkg --configure -a
+
 end
 
 task :tools do
