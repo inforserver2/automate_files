@@ -145,7 +145,7 @@ set :port, 22
 set :user, "root"
 set :application, "pub"
 set :deploy_to, "/root/pack"
-set :use_sudo, false
+set :use_sudo, true
 set :folder, "~/pack"
 set :hostname, "server"
 set :gemOptions, "--no-ri --no-rdoc"
@@ -153,16 +153,20 @@ set :domain, "domain.net"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+# if you want to send pem key
+#ssh_options[:auth_methods] = ["publickey"]
+#ssh_options[:keys] = ["/home/max/Downloads/youintop_aws_key.pem"]
+
 
 task :basics do
   run "export DEBIAN_FRONTEND=noninteractive"
   run "sudo apt-get -y update"
   run "sudo apt-get -y upgrade"
-  run "apt-get -y install ntp ntpdate"
-  run "apt-get -y install ssh openssh-server"
-  run "apt-get -y install lynx libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev build-essential"
-  run "apt-get -y install  nmap tree unzip unrar-free bind9 dnsutils apache2 libcurl4-openssl-dev apache2-prefork-dev libapr1-dev libaprutil1-dev sqlite3 mysql-client"
-  run 'echo "mysql-server mysql-server/root_password password {senha}" | debconf-set-selections; echo "mysql-server mysql-server/root_password_again password {senha}" | debconf-set-selections; sudo apt-get -y install mysql-server'
+  run "sudo apt-get -y install ntp ntpdate"
+  run "sudo apt-get -y install ssh openssh-server"
+  run "sudo apt-get -y install lynx libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev build-essential"
+  run "sudo apt-get -y install  nmap tree unzip unrar-free bind9 dnsutils apache2 libcurl4-openssl-dev apache2-prefork-dev libapr1-dev libaprutil1-dev sqlite3 mysql-client"
+  run 'echo "mysql-server mysql-server/root_password password {senha}" | sudo debconf-set-selections; echo "mysql-server mysql-server/root_password_again password {senha}" | sudo debconf-set-selections; sudo apt-get -y install mysql-server'
   run "sudo apt-get -y install postgresql libpq-dev" # need configure see attach url
   # sudo apt-get -y install pgadmin3 #needs X-11
   run "sudo apt-get -y install libtool autoconf"
