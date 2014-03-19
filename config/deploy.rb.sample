@@ -226,6 +226,12 @@ task :basics do
   
   run "sudo apt-get -y install ack-grep"
   
+  # INSTALL SOLR-TOMCAT
+  # https://github.com/sunspot/sunspot/wiki/Configure-Solr-on-Ubuntu%2C-the-quickest-way
+  run "sudo apt-get -y install openjdk-6-jdk"
+  run "sudo apt-get -y  install solr-tomcat"
+  run "sudo service tomcat6 start"
+  
 end
 
 
