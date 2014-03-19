@@ -252,7 +252,7 @@ task :vim do
   # compile vim if wants CommandT
   # run "#{folder}/automate_files/compile_vim"
   # install vim normally
-  run "apt-get -y install vim vim-nox vim-gtk"
+  run "sudo apt-get -y install vim vim-nox vim-gtk"
   run "#{folder}/automate_files/load_vimfiles"
   run "#{folder}/automate_files/personal_vim"
   # run "#{folder}/automate_files/command_t_install"
@@ -261,9 +261,9 @@ end
 
 task :pear do
   # perl-extensions
-  run "pear channel-discover pear.horde.org"
-  run "pear channel-update pear.horde.org"
-  run "pear install Horde/Horde_Yaml-beta"
+  run "sudo pear channel-discover pear.horde.org"
+  run "sudo pear channel-update pear.horde.org"
+  run "sudo pear install Horde/Horde_Yaml-beta"
 end
 
 task :rails do
@@ -306,7 +306,7 @@ task :php_modules do
     # OR
     
     # http://gercogandia.blogspot.com.br/2012/11/automatic-unattended-install-of.html
-    run 'echo "phpmyadmin phpmyadmin/app-password-confirm password {senha}" | debconf-set-selections; echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections; echo "phpmyadmin phpmyadmin/mysql/admin-pass password {senha}" | debconf-set-selections; echo "phpmyadmin phpmyadmin/mysql/app-pass password {senha}" | debconf-set-selections; echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections; sudo apt-get install phpmyadmin -y'
+    run 'echo "phpmyadmin phpmyadmin/app-password-confirm password {senha}" | sudo debconf-set-selections; echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | sudo debconf-set-selections; echo "phpmyadmin phpmyadmin/mysql/admin-pass password {senha}" | sudo debconf-set-selections; echo "phpmyadmin phpmyadmin/mysql/app-pass password {senha}" | sudo debconf-set-selections; echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | sudo debconf-set-selections; sudo apt-get install phpmyadmin -y'
 
     # PHPPGADMIN
     # config at http://www.vivaolinux.com.br/dica/Instalacao-e-configuracao-do-PostgreSQL-e-phpPgAdmin-no-Debian
@@ -326,7 +326,7 @@ task :php_modules do
   run "sed -i 's/^# allow from all/ allow from all/' /etc/phppgadmin/apache.conf"
   run "sudo -u postgres  psql -d postgres -U postgres -c \"ALTER USER postgres WITH PASSWORD '{senha}';\" "
   run "#{folder}/automate_files/set_mod_rewrite_on"
-  run "service apache2 restart"
+  run "sudo service apache2 restart"
 
 end
 
@@ -364,6 +364,12 @@ task :adjusts do
     # apt-get clean
     # sed -n 'Np' file
     # MAIL=~/Maildir
+    ### first try
+    #sudo rm -rf /var/lib/dpkg/info/a.* && sudo rm -rf /var/lib/dpkg/info/*.* && sudo apt-get clean && sudo apt-get install -f && sudo apt-get clean && sudo apt-get update
+    ### second try
+    # sudo apt-get install -f  && sudo apt-get upgrade -f && sudo apt-get dist-upgrade -f && sudo dpkg --configure -a
+    ### force try
+    # rm /var/lib/dpkg/info/* 
 end
 
 task :tools do
