@@ -378,6 +378,22 @@ task :adjusts do
     # sudo apt-get dist-upgrade -f 
     # sudo apt-get update
     # sudo dpkg --configure -a
+    
+    
+    # Solving Problems with PPA offline
+    # http://askubuntu.com/questions/208037/some-index-files-failed-to-download-while-updating
+    # sudo su (login as root)
+    #cd /var/lib/apt/lists/
+    #rm -fr *
+    #cd /etc/apt/sources.list.d/
+    #rm -fr *
+    #cd /etc/apt
+    #sudo cp sources.list sources.list.old
+    #sudo cp sources.list sources.list.tmp
+    #sed 's/ubuntuarchive.hnsdc.com/us.archive.ubuntu.com/' sources.list.tmp | sudo tee sources.list
+    #sudo rm sources.list.tmp*
+    #apt-get clean
+    #apt-get update    
 
 end
 
