@@ -7,9 +7,9 @@ if [ ! -d "libxml2" ]; then
 	cd ~/pack/automate_files/files/libxml2
 	./autogen.sh
 	./configure --with-python=/usr/include/python3.3m
-	make
-	make check
-	make install
+	sudo make
+	sudo make check
+	sudo make install
 else
 	echo already installed
 fi
