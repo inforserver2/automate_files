@@ -6,9 +6,11 @@
 # dependency
 sudo apt-get install curl
 # GET stable version
-\curl -L https://get.rvm.io | bash -s stable
+\curl -L https://get.rvm.io | sudo bash -s stable
 # install
 source /etc/profile.d/rvm.sh
+echo "source /etc/profile.d/rvm.sh" | sudo tee -a ~/.bashrc
+echo "source /etc/profile.d/rvm.sh" | sudo tee -a /root/.bashrc
 # show version
 rvm -v
 # post intall
@@ -20,9 +22,10 @@ rvm install 2.1.0
 rvm --default use 2.1.0
 rvm gemset create rails4
 rvm use 2.1.0@rails4 --default
-gem install rails --no-ri --no-rdoc
-gem install passenger
-passenger-install-apache2-module -a
+
+sudo bash -c "gem install rails --no-ri --no-rdoc"
+sudo bash -c "gem install passenger"
+sudo bash -c "passenger-install-apache2-module -a"
 # rvm --create --rvmrc 2.0.0@rails4
 
 
