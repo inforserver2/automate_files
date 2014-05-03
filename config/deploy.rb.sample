@@ -6,6 +6,7 @@
 # set fixed ip on remote linux station
 # set password for root with "sudo passwd root" command
 # manually install "apt-get -y install ssh openssh-server"
+# manually add "ubuntu" user to the "sudo" group when using amazon ec2 intances
 ##### ATTENTION
 ##### How to secure your linux
 ##### http://feross.org/how-to-setup-your-linode/
