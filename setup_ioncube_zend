@@ -20,8 +20,8 @@ if [ ! -f /usr/local/lib/ioncube/ioncube_loader_lin_5.3.so ]; then
     fi
 
     cd ioncube
-    mkdir -p /usr/local/lib/ioncube
-    cp -rf ioncube_loader_lin_5.3.so /usr/local/lib/ioncube
+    sudo mkdir -p /usr/local/lib/ioncube
+    sudo cp -rf ioncube_loader_lin_5.3.so /usr/local/lib/ioncube
     cd ~/pack; rm -rf ioncube
     echo done.
 
@@ -46,8 +46,8 @@ if [ ! -f /usr/local/lib/Zend/ZendGuardLoader.so ]; then
         cd ZendGuardLoader-php-5.3-linux-glibc23-x86_64/php-5.3.x
     fi
 
-    mkdir -p /usr/local/lib/Zend
-    cp -rf ZendGuardLoader.so /usr/local/lib/Zend
+    sudo mkdir -p /usr/local/lib/Zend
+    sudo cp -rf ZendGuardLoader.so /usr/local/lib/Zend
 
     cd ~/pack/automate_files/files
     rm -rf ZendGuardLoader-php-5.3-linux-glibc23-x86_64 ZendGuardLoader-php-5.3-linux-glibc23-i386
@@ -57,14 +57,14 @@ fi
 
 if ! grep "zend_extension" /etc/php5/apache2/php.ini -q ; then
     echo Pushing ioncube zend load instrutions to php.ini...
-cat >> /etc/php5/apache2/php.ini <<-EOF
+cat << EOF | sudo tee -a /etc/php5/apache2/php.ini
 [Zend]
 zend_extension=/usr/local/lib/ioncube/ioncube_loader_lin_5.3.so
 zend_extension=/usr/local/lib/Zend/ZendGuardLoader.so
 EOF
-    echo "<?php echo phpinfo(); ?>" > /var/www/phpinfo.php
+    echo "<?php echo phpinfo(); ?>" | sudo tee -a /var/www/phpinfo.php
     echo done.
 fi
 
-service apache2 restart
+sudo service apache2 restart
 
