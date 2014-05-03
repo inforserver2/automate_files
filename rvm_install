@@ -2,6 +2,8 @@
 
 # RVM
 # http://igorrocha.com.br/instalando-rvm-no-ubuntu-12-04-e-ambientes-ruby-2-0-0-com-rails-4-0-0-beta1-e-ruby-1-9-3-com-rails-3-2-13/
+# please run this script when logged as root user
+
 
 # dependency
 sudo apt-get install curl
@@ -10,7 +12,6 @@ sudo apt-get install curl
 # install
 source /etc/profile.d/rvm.sh
 echo "source /etc/profile.d/rvm.sh" | sudo tee -a ~/.bashrc
-echo "source /etc/profile.d/rvm.sh" | sudo tee -a /root/.bashrc
 # show version
 rvm -v
 # post intall
