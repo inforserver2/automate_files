@@ -275,29 +275,29 @@ end
 task :rails do
 
   # Update rubygems
-  run "( ! gem list | grep rubygems-update ) && (gem install rubygems-update #{gemOptions} && update_rubygems) || echo rubygems-update already installed!"
+  run "( ! sudo gem list | grep rubygems-update ) && (gem install rubygems-update #{gemOptions} && sudo update_rubygems) || echo rubygems-update already installed!"
 
   # install ruby on rails and utilities
-  run "( ! gem list | grep rails ) && gem install rails #{gemOptions} -f || echo rails already installed!"
-  run "( ! gem list | grep whenever ) && gem install whenever #{gemOptions}|| echo whenever already installed!"
-  run "( ! gem list | grep annotate ) && gem install annotate #{gemOptions}|| echo annotate already installed!"
-  run "( ! gem list | grep astrails-safe ) && gem install astrails-safe #{gemOptions}|| echo astrails-safe already installed!"
-  run "( ! gem list | grep delayed_job ) && gem install delayed_job #{gemOptions}|| echo delayed_job already installed!"
-  run "( ! gem list | grep therubyracer ) && gem install therubyracer #{gemOptions}|| echo therubyracer already installed!"
-  run "( ! gem list | grep pg ) && gem install pg #{gemOptions}|| echo pg already installed!"
-  run "( ! gem list | grep mysql2 ) && gem install mysql2 #{gemOptions}|| echo mysql already installed!"
-  run "( ! gem list | grep rmagick ) && gem install rmagick #{gemOptions}|| echo rmagick already installed!"
-  run "( ! gem list | grep sqlite3 ) && gem install sqlite3 #{gemOptions}|| echo sqlite already installed!"
-  run "( ! gem list | grep carrierwave ) && gem install carrierwave #{gemOptions}|| echo carrierwave already installed!"
-  run "( ! gem list | grep rspec ) && gem install rspec-rails #{gemOptions}|| echo rspec already installed!"
-  run "( ! gem list | grep sass ) && gem install sass #{gemOptions}|| echo sass already installed!"
-  run "( ! gem list | grep forward ) && gem install forward #{gemOptions}|| echo forward already installed!"
-  run "( ! gem list | grep nokogiri ) && gem install nokogiri #{gemOptions}|| echo nokogiri already installed!"
-  run "( ! gem list | grep capistrano ) && gem install capistrano #{gemOptions}|| echo capistrano already installed!"
+  run "( ! sudo gem list | grep rails ) && sudo gem install rails #{gemOptions} -f || echo rails already installed!"
+  run "( ! sudo gem list | grep whenever ) && sudo gem install whenever #{gemOptions}|| echo whenever already installed!"
+  run "( ! sudo gem list | grep annotate ) && sudo gem install annotate #{gemOptions}|| echo annotate already installed!"
+  run "( ! sudo gem list | grep astrails-safe ) && sudo gem install astrails-safe #{gemOptions}|| echo astrails-safe already installed!"
+  run "( ! sudo gem list | grep delayed_job ) && sudo gem install delayed_job #{gemOptions}|| echo delayed_job already installed!"
+  run "( ! sudo gem list | grep therubyracer ) && sudo gem install therubyracer #{gemOptions}|| echo therubyracer already installed!"
+  run "( ! sudo gem list | grep pg ) && sudo gem install pg #{gemOptions}|| echo pg already installed!"
+  run "( ! sudo gem list | grep mysql2 ) && sudo gem install mysql2 #{gemOptions}|| echo mysql already installed!"
+  run "( ! sudo gem list | grep rmagick ) && sudo gem install rmagick #{gemOptions}|| echo rmagick already installed!"
+  run "( ! sudo gem list | grep sqlite3 ) && sudo gem install sqlite3 #{gemOptions}|| echo sqlite already installed!"
+  run "( ! sudo gem list | grep carrierwave ) && sudo gem install carrierwave #{gemOptions}|| echo carrierwave already installed!"
+  run "( ! sudo gem list | grep rspec ) && sudo gem install rspec-rails #{gemOptions}|| echo rspec already installed!"
+  run "( ! sudo gem list | grep sass ) && sudo gem install sass #{gemOptions}|| echo sass already installed!"
+  run "( ! sudo gem list | grep forward ) && sudo gem install forward #{gemOptions}|| echo forward already installed!"
+  run "( ! sudo gem list | grep nokogiri ) && sudo gem install nokogiri #{gemOptions}|| echo nokogiri already installed!"
+  run "( ! sudo gem list | grep capistrano ) && sudo gem install capistrano #{gemOptions}|| echo capistrano already installed!"
 
 
   # setup passenger
-  run "( ! gem list | grep passenger ) && gem install passenger #{gemOptions}|| echo passenger already installed!"
+  run "( ! sudo gem list | grep passenger ) && sudo gem install passenger #{gemOptions}|| echo passenger already installed!"
   run "#{folder}/automate_files/passenger_config"
 end
 
