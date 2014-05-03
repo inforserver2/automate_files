@@ -57,7 +57,7 @@ fi
 
 if ! grep "zend_extension" /etc/php5/apache2/php.ini -q ; then
     echo Pushing ioncube zend load instrutions to php.ini...
-cat << EOF | sudo tee -a /etc/php5/apache2/php.ini
+cat <<-EOF | sudo tee -a /etc/php5/apache2/php.ini
 [Zend]
 zend_extension=/usr/local/lib/ioncube/ioncube_loader_lin_5.3.so
 zend_extension=/usr/local/lib/Zend/ZendGuardLoader.so
