@@ -275,7 +275,7 @@ end
 task :rails do
 
   # Update rubygems
-  run "( ! sudo gem list | grep rubygems-update ) && (gem install rubygems-update #{gemOptions} && sudo update_rubygems) || echo rubygems-update already installed!"
+  run "( ! sudo gem list | grep rubygems-update ) && (sudo gem install rubygems-update #{gemOptions} && sudo update_rubygems) || echo rubygems-update already installed!"
 
   # install ruby on rails and utilities
   run "( ! sudo gem list | grep rails ) && sudo gem install rails #{gemOptions} -f || echo rails already installed!"
