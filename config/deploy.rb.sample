@@ -435,8 +435,8 @@ task :prepare do
   rails
   php_modules
   js
-  cfg
-  tools
+  #cfg
+  #tools
   # mail
 end
 
