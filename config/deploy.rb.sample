@@ -401,8 +401,9 @@ task :adjusts do
 end
 
 task :tools do
-  run "#{folder}/automate_files/rvm_install"
-  run "#{folder}/automate_files/heroku_toolbelt"
+  ## PLEASE RUN THOSE AS ROOT USER
+  # run "#{folder}/automate_files/rvm_install"
+  # run "#{folder}/automate_files/heroku_toolbelt"
 end
 
 task :mail do
