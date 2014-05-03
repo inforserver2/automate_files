@@ -7,7 +7,7 @@ echo Loading repositories for webmin
 if ! grep -Fxq "$str1" "$file1" 
 then
 	echo doing...
-	cat << EOF | sudo tee -a /etc/apt/sources.list
+	cat <<-EOF | sudo tee -a /etc/apt/sources.list
 	deb http://download.webmin.com/download/repository sarge contrib
 	deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
 	EOF
