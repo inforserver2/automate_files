@@ -326,11 +326,11 @@ task :php_modules do
   run "sudo passwd -l deploy"
   
   run "sudo apt-get -y install phppgadmin"
-  run "sed -i 's/^local   all             all                                     peer$/local   all             all                                     trust/' /etc/postgresql/9.1/main/pg_hba.conf"
-  run "sed -i '$ a\local   all             deploy                                  md5'  /etc/postgresql/9.1/main/pg_hba.conf"
-  run 'sed -i "s#_security[\']] = true#_security\'] = false#g" /etc/phppgadmin/config.inc.php'
-  run "sed -i 's/^# allow from all/ allow from all/' /etc/phppgadmin/apache.conf"
-  run "sudo -u postgres  psql -d postgres -U postgres -c \"ALTER USER postgres WITH PASSWORD '{senha}';\q" "
+  run "sudo sed -i 's/^local   all             all                                     peer$/local   all             all                                     trust/' /etc/postgresql/9.1/main/pg_hba.conf"
+  run "sudo sed -i '$ a\local   all             deploy                                  md5'  /etc/postgresql/9.1/main/pg_hba.conf"
+  run 'sudo sed -i "s#_security[\']] = true#_security\'] = false#g" /etc/phppgadmin/config.inc.php'
+  run "sudo sed -i 's/^# allow from all/ allow from all/' /etc/phppgadmin/apache.conf"
+  run "sudo -u postgres  psql -d postgres -U postgres -c \"ALTER USER postgres WITH PASSWORD '{senha}'\""
   run "#{folder}/automate_files/set_mod_rewrite_on"
   run "sudo service postgresql restart"
   run "sudo service apache2 restart"
