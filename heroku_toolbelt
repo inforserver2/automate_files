@@ -1,3 +1,4 @@
 #!/bin/bash
 #https://toolbelt.heroku.com/
+# please run this script when logged as root user
 wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sudo sh
