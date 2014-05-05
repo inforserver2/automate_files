@@ -358,6 +358,12 @@ task :js do
   
 end
 
+task :updates do
+  run "sudo apt-get -y update"
+  run "sudo apt-get dist-upgrade"
+end
+
+
 task :cfg do
   run "#{folder}/automate_files/set_hostname #{hostname} #{domain}"
   run "echo nameserver 127.0.0.1 > /etc/resolv.conf"
@@ -440,6 +446,7 @@ task :prepare do
   #cfg
   #tools
   # mail
+  updates
 end
 
 
