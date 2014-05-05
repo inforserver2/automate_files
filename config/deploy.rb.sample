@@ -279,6 +279,7 @@ task :rails do
   run "( ! sudo gem list | grep rubygems-update ) && (sudo gem install rubygems-update #{gemOptions} && sudo update_rubygems) || echo rubygems-update already installed!"
 
   # install ruby on rails and utilities
+  run "( ! sudo gem list | grep bundler ) && sudo gem install bundler #{gemOptions} -f || echo bundler already installed!"
   run "( ! sudo gem list | grep rails ) && sudo gem install rails #{gemOptions} -f || echo rails already installed!"
   run "( ! sudo gem list | grep whenever ) && sudo gem install whenever #{gemOptions}|| echo whenever already installed!"
   run "( ! sudo gem list | grep annotate ) && sudo gem install annotate #{gemOptions}|| echo annotate already installed!"
