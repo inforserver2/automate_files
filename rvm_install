@@ -8,6 +8,7 @@
 # dependency
 sudo apt-get install curl
 # GET stable version
+sudo curl -sSL https://rvm.io/mpapis.asc | sudo gpg --import -
 \curl -L https://get.rvm.io | bash -s stable
 # install
 source /etc/profile.d/rvm.sh
