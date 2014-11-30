@@ -185,8 +185,7 @@ task :basics do
   # install ruby
   run "sudo add-apt-repository -y ppa:brightbox/ruby-ng-experimental"
   run "sudo apt-get update"
-  run "sudo apt-get install -y ruby2.0 ruby2.0-dev"
-  run "sudo ln -sf /usr/bin/ruby2.0 /usr/bin/ruby"  
+  run "sudo apt-get install -y ruby1.9.1 ruby1.9.1-dev"
 
 
 
