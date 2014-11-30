@@ -299,7 +299,7 @@ task :rails do
 
   # setup passenger
   run "( ! sudo gem list | grep passenger ) && sudo gem install passenger #{gemOptions}|| echo passenger already installed!"
-  run "#{folder}/automate_files/passenger_config"
+ # run "#{folder}/automate_files/passenger_config"
 end
 
 task :php_modules do
